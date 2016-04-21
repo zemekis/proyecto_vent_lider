@@ -85,16 +85,19 @@ foreign key (id_ventaFK) references venta(id_venta)
 );
 */
 
+insert into usuario values(null,'usuario1','user12345');
+
 -- drop database pro_venta;
 -- drop table cliente;
 -- drop table marca;
 -- drop table metodoPago;
 -- drop table producto;
 -- drop table registrohistorico;
-drop table registroventa;
+
 -- drop table tipo;
 -- drop table tipocliente;
 -- drop table usuario;
 -- drop table venta;
 show tables;
+select * from usuario;
 
