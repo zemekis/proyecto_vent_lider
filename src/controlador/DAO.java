@@ -144,12 +144,53 @@ public class DAO {
     }
     
     
-    public void eliminarProducto(){
+    public void eliminarProducto(int id) throws SQLException{
     
+    sql = "delete from producto where id_producto = '"+ id +"'";
     
+    c.ejecutar(sql);
     
     }
     
+    public void eliminarMarca(int id) throws SQLException{
+    
+    sql = "delete from marca where id_marca = '"+ id +"'";
+    
+    c.ejecutar(sql);
+    
+    }
+    
+    public void eliminarTipo(int id) throws SQLException{
+    
+    sql = "delete from tipo where id_tipo = '"+ id +"'";
+    
+    c.ejecutar(sql);
+    
+    }
+    
+    public void actualizarTipo(String nombre, int id) throws SQLException{
+    
+    sql = "update tipo set nombre_tipo = '"+nombre+"' where id_tipo = '"+id+"'";
+    
+    c.ejecutar(sql);
+    
+    }
+    
+    public void actualizarMarca(String nombre, int id) throws SQLException{
+    
+    sql = "update marca set nombre_marca = '"+nombre+"' where id_marca = '"+id+"'";
+    
+    c.ejecutar(sql);
+    
+    }
+    
+    public void actualizarProducto(int stock,int precio, int id) throws SQLException{
+    
+    sql = "update producto set precio_producto = '"+precio+"', stock_producto = '"+id+"' where id_marca = '"+id+"'";
+    
+    c.ejecutar(sql);
+    
+    }
     
     
     

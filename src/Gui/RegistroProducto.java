@@ -263,9 +263,6 @@ public class RegistroProducto extends javax.swing.JFrame {
             Logger.getLogger(RegistroProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
-        
     }//GEN-LAST:event_btnRegistrarMarcaActionPerformed
 
     private void btnRegistrarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTipoActionPerformed
