@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package controlador;
 
 /**
  *
  * @author Zemekis
  */
-public class Conexion {
-   
+public class DAO {
+    
 }
