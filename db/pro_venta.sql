@@ -57,7 +57,6 @@ create table venta(
 id_venta int auto_increment,
 direccionLocal_venta varchar(50),
 fecha_venta timestamp,
-giro_venta varchar(50),
 metodo_pagoFK int,
 id_usuarioFK  int,
 id_clienteFK int ,
