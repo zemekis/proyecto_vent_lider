@@ -100,4 +100,7 @@ insert into usuario values(null,'usuario1','user12345');
 -- drop table venta;
 show tables;
 select * from usuario;
+select * from tipo;
+select * from marca;
+select * from producto;
 
