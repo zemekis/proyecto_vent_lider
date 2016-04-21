@@ -76,7 +76,7 @@ accion_registroHistorico varchar(50),
 fecha_registroHistorico timestamp,
 primary key(id_registrohistorico));
 
-
+/*
 create table registroventa(
 id_registroVenta int auto_increment,
 fecha_registro timestamp,
@@ -84,6 +84,7 @@ id_ventaFK int,
 primary key (id_registroventa),
 foreign key (id_ventaFK) references venta(id_venta)
 );
+*/
 
 -- drop database pro_venta;
 -- drop table cliente;
@@ -91,7 +92,7 @@ foreign key (id_ventaFK) references venta(id_venta)
 -- drop table metodoPago;
 -- drop table producto;
 -- drop table registrohistorico;
--- drop table registroventa;
+drop table registroventa;
 -- drop table tipo;
 -- drop table tipocliente;
 -- drop table usuario;
