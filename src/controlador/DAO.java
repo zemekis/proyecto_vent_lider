@@ -57,7 +57,7 @@ public class DAO {
                 + "'" + p.getPrecio_producto()+ "',"
                 + "'" + p.getStock_producto()+ "',"
                 + "'" + p.getMarcaFK()+ "',"
-                + "'" + p.getTipoFK()+ "'";
+                + "'" + p.getTipoFK()+ "')";
 
         c.ejecutar(sql);
     }
@@ -67,7 +67,7 @@ public class DAO {
         sql = "insert into productosDetalles values("
                 + " null ,"
                 + "'" + u.getNombre_usuario()+ "',"
-                + "'" + u.getPassword_usuario()+ "'";
+                + "'" + u.getPassword_usuario()+ "')";
 
         c.ejecutar(sql);
     }
@@ -192,6 +192,65 @@ public class DAO {
     
     }
     
+    public Marca getMarca(int id) throws SQLException{
+        
+        Marca m = null;
+         sql = "select * from marca where id_marca = '"+id+"' ";
+         
+         c.rs = c.ejecutarSelect(sql);
+         if (c.rs.next()) {
+            m = new Marca();
+            m.setId_marca(c.rs.getInt(1));
+            m.setNombre_marca(c.rs.getString(2));
+        }
+
+        c.rs.close();
+
+        return m;
+        
+    }
     
+    public Tipo getTipo(int id) throws SQLException{
+        
+        Tipo t = null;
+         sql = "select * from tipo where id_tipo = '"+id+"' ";
+         
+         c.rs = c.ejecutarSelect(sql);
+         if (c.rs.next()) {
+            t = new Tipo();
+            t.setId_tipo(c.rs.getInt(1));
+            t.setNombre_tipo(c.rs.getString(2));
+        }
+
+        c.rs.close();
+
+        return t;
+        
+    }
     
+    public List<Producto> getProducto(String busqueda) throws SQLException{
+        
+        productos = new ArrayList<>();
+        
+        sql = "select * from producto where nombre_producto like '%"+busqueda+"%';";
+         
+         c.rs = c.ejecutarSelect(sql);
+         Producto p;
+         while (c.rs.next()) {
+            p = new Producto();
+            p.setId_producto(c.rs.getInt(1));
+            p.setNombre_producto(c.rs.getString(2));
+            p.setPrecio_producto(c.rs.getInt(3));
+            p.setStock_producto(c.rs.getInt(4));
+            p.setMarcaFK(c.rs.getInt(5));
+            p.setTipoFK(c.rs.getInt(6));
+            
+            productos.add(p);
+        }
+
+        c.rs.close();
+
+        return productos;
+        
+    }
 }

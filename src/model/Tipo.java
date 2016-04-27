@@ -38,7 +38,7 @@ public class Tipo {
 
     @Override
     public String toString() {
-        return "Tipo{" + "id_tipo=" + id_tipo + ", nombre_tipo=" + nombre_tipo + '}';
+        return nombre_tipo;
     }
     
 }

@@ -113,3 +113,5 @@ select * from tipo;
 select * from marca;
 select * from producto;
 
+select * from producto where nombre_producto like '%pe%';
+
