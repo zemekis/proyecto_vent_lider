@@ -32,11 +32,13 @@ public class Menu extends javax.swing.JFrame {
         btnVerPro = new javax.swing.JButton();
         btnRegPro = new javax.swing.JButton();
         btnRegMarTip = new javax.swing.JButton();
-        btnVerUsuarios = new javax.swing.JButton();
         btnRegUsuarios = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sistema Venta"));
 
         btnVerPro.setText("Ver Productos");
         btnVerPro.addActionListener(new java.awt.event.ActionListener() {
@@ -53,12 +55,27 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnRegMarTip.setText("Registrar marca o tipo");
-
-        btnVerUsuarios.setText("Ver Usuarios");
+        btnRegMarTip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegMarTipActionPerformed(evt);
+            }
+        });
 
         btnRegUsuarios.setText("Registrar Usuarios");
+        btnRegUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegUsuariosActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carro.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,24 +91,28 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btnRegMarTip, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVerPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVerUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(56, 56, 56))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(btnVerPro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegPro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegMarTip)
-                .addGap(18, 18, 18)
-                .addComponent(btnVerUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegUsuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRegPro)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegMarTip)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegUsuarios))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(26, 26, 26))
         );
@@ -119,6 +140,23 @@ public class Menu extends javax.swing.JFrame {
      regP.setVisible(true);
              
     }//GEN-LAST:event_btnRegProActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+       this.setVisible(false);
+       LogIn volver = new LogIn();
+       volver.setVisible(true);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnRegMarTipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegMarTipActionPerformed
+   
+    }//GEN-LAST:event_btnRegMarTipActionPerformed
+
+    private void btnRegUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegUsuariosActionPerformed
+       this.setVisible(false);
+       RegistroUsuario regu = new RegistroUsuario();
+       regu.setVisible(true);
+               
+    }//GEN-LAST:event_btnRegUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +199,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnRegUsuarios;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerPro;
-    private javax.swing.JButton btnVerUsuarios;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

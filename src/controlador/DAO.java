@@ -68,11 +68,9 @@ public class DAO {
     
     
     public void crearUsuario(Usuario u) throws SQLException {
-        sql = "insert into usuario values("
-                + " null ,"
-                + "'" + u.getNombre_usuario()+ "',"
-                + "'" + u.getPassword_usuario()+ "')";
-
+        
+        sql = "insert into usuario values(null,'"+u.getNombre_usuario()+"','MD5("+u.getPassword_usuario()+")')";
+        System.out.println(sql);
         c.ejecutar(sql);
     }
     
