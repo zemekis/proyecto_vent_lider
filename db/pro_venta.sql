@@ -60,12 +60,10 @@ fecha_venta timestamp,
 metodo_pagoFK int,
 id_usuarioFK  int,
 id_clienteFK int ,
-id_compraFK int,
 primary key (id_venta),
 foreign key (metodo_pagoFK)references metodoPago(id_metodopago),
 foreign key (id_usuarioFK) references usuario(id_usuario),
-foreign key (id_clienteFK)references cliente(id_cliente),
-foreign key (id_compraFK)references compra(id_compra)
+foreign key (id_clienteFK)references cliente(id_cliente)
 );
 
 
@@ -77,11 +75,13 @@ primary key(id_registrohistorico));
 
 
 create table compra(
-id_compra int auto_increment,
 id_productoFK int,
+id_ventaFK int,
 cantidad int,
-primary key (id_compra),
-foreign key (id_productoFK) references producto(id_producto)
+primary key (id_productoFK,id_ventaFK),
+foreign key (id_productoFK) references producto(id_producto),
+foreign key (id_ventaFK) references venta(id_venta)
+
 );
 
 /*
