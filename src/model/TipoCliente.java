@@ -40,7 +40,7 @@ public class TipoCliente {
 
     @Override
     public String toString() {
-        return "TipoCliente{" + "id_tipoCiente=" + id_tipoCiente + ", nombre_tipoCliente=" + nombre_tipoCliente + '}';
+        return nombre_tipoCliente;
     }
 
 }

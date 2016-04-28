@@ -38,7 +38,7 @@ public class MetodoPago {
 
     @Override
     public String toString() {
-        return "MetodoPago{" + "id_metodoPago=" + id_metodoPago + ", nombre_metodoPago=" + nombre_metodoPago + '}';
+        return nombre_metodoPago;
     }
     
 }

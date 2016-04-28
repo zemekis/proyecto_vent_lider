@@ -9,10 +9,13 @@ import controlador.Conexion;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Compra;
 import model.Marca;
+import model.MetodoPago;
 import model.Producto;
 import model.Tipo;
 import model.Usuario;
+import model.Venta;
 
 /**
  *
@@ -25,7 +28,8 @@ public class DAO {
     private List<Producto> productos;
     private List<Marca> marcas;
     private List<Tipo> tipos;
-//    private List<Usuario> usuarios;
+    private List<Usuario> usuarios;
+    private List<MetodoPago> metodos;
     
     public DAO() throws SQLException {
         c = new Conexion(
@@ -184,9 +188,9 @@ public class DAO {
     
     }
     
-    public void actualizarProducto(int stock,int precio, int id) throws SQLException{
+    public void actualizarProducto(int precio,int stock, String nombre) throws SQLException{
     
-    sql = "update producto set precio_producto = '"+precio+"', stock_producto = '"+id+"' where id_marca = '"+id+"'";
+    sql = "update producto set precio_producto = '"+precio+"', stock_producto = '"+stock+"' where nombre_producto = '"+nombre+"'";
     
     c.ejecutar(sql);
     
@@ -228,32 +232,6 @@ public class DAO {
         
     }
     
-    public List<Producto> getProducto(String busqueda) throws SQLException{
-        
-        productos = new ArrayList<>();
-        
-        sql = "select * from producto where nombre_producto like '%"+busqueda+"%';";
-         
-         c.rs = c.ejecutarSelect(sql);
-         Producto p;
-         while (c.rs.next()) {
-            p = new Producto();
-            p.setId_producto(c.rs.getInt(1));
-            p.setNombre_producto(c.rs.getString(2));
-            p.setPrecio_producto(c.rs.getInt(3));
-            p.setStock_producto(c.rs.getInt(4));
-            p.setMarcaFK(c.rs.getInt(5));
-            p.setTipoFK(c.rs.getInt(6));
-            
-            productos.add(p);
-        }
-
-        c.rs.close();
-
-        return productos;
-        
-    }
-    
     public Usuario getUsuario(String nombre ,String pass) throws SQLException{
         
         Usuario u = null;
@@ -269,6 +247,120 @@ public class DAO {
         c.rs.close();
 
         return u;
+    }
+    
+    public Producto getProducto(String busqueda) throws SQLException{
+        
+        Producto p = null;
+        
+        sql = "select * from producto where nombre_producto = '"+busqueda+"'";
+         
+         c.rs = c.ejecutarSelect(sql);
+         
+         if (c.rs.next()) {
+            p = new Producto();
+            p.setId_producto(c.rs.getInt(1));
+            p.setNombre_producto(c.rs.getString(2));
+            p.setPrecio_producto(c.rs.getInt(3));
+            p.setStock_producto(c.rs.getInt(4));
+            p.setMarcaFK(c.rs.getInt(5));
+            p.setTipoFK(c.rs.getInt(6));
+        }
+
+        c.rs.close();
+
+        return p;
+        
+    }
+    
+    public List<Usuario> getUsuarios() throws SQLException {
+        usuarios = new ArrayList<>();
+
+        sql = "select * from usuario";
+
+        c.rs = c.ejecutarSelect(sql);
+
+        Usuario u;
+        while (c.rs.next()) {
+            u = new Usuario();
+
+            u.setId_usuario(c.rs.getInt(1));
+            u.setNombre_usuario(c.rs.getString(2));
+            u.setPassword_usuario(c.rs.getString(2));
+
+            usuarios.add(u);
+        }
+
+        c.rs.close();
+
+        return usuarios;
+    }
+    
+    public List<MetodoPago> getMetodos() throws SQLException {
+        metodos = new ArrayList<>();
+
+        sql = "select * from metodopago";
+
+        c.rs = c.ejecutarSelect(sql);
+
+        MetodoPago me;
+        while (c.rs.next()) {
+            me = new MetodoPago();
+
+            me.setId_metodoPago(c.rs.getInt(1));
+            me.setNombre_metodoPago(c.rs.getString(2));
+
+            metodos.add(me);
+        }
+
+        c.rs.close();
+
+        return metodos;
+    }
+    
+    public void crearVenta(Venta v) throws SQLException {
+        sql = "insert into venta values("
+                + " null ,"
+                + "'Rancagua O´Carrol 129',"
+                + "curdate(),"
+                + "'" + v.getMetodoPagoFK()+ "',"
+                + "'" + v.getId_usuarioFK()+ "',"
+                + "'" + v.getRut_clienteFK()+ "')";
+
+        c.ejecutar(sql);
+    }
+    
+    public void crearCompra(Compra co) throws SQLException {
+        sql = "insert into compra values("
+                + " null ,"
+                + "'"+co.getId_productoFK()+"',"
+                + "'"+co.getId_ventaFK()+"',"
+                + "'" + co.getCantidad()+ "')";
+
+        c.ejecutar(sql);
+    }
+    
+    public int getID(String nombre) throws SQLException{
+        
+        sql = "select id_producto from producto where nombre_producto = '"+nombre+"'";
+        
+        c.rs = c.ejecutarSelect(sql);
+        int id = 0;
+        if(c.rs.next()) {
+        
+             id = c.rs.getInt(1);
+        
+        }
+        return id;
+
+    }
+    
+    public void actualizarProductoStock(int stock, String nombre) throws SQLException{
+    
+    sql = "update producto set stock_producto = stock_producto - '"+stock+"' where nombre_producto = '"+nombre+"'";
+    
+    c.ejecutar(sql);
+    
     }
   
    

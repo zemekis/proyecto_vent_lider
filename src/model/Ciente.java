@@ -10,7 +10,6 @@ package model;
  * @author Zemekis
  */
 public class Ciente {
-private int id_cliente;
 private String nombre_cliente;
 private int tipo_clienteFK;
 private String rut_cliente ;
@@ -24,9 +23,6 @@ private String rut_cliente ;
         this.rut_cliente = rut_cliente;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
-    }
 
     public String getNombre_cliente() {
         return nombre_cliente;
@@ -40,10 +36,6 @@ private String rut_cliente ;
         return tipo_clienteFK;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
-    }
-
     public void setNombre_cliente(String nombre_cliente) {
         this.nombre_cliente = nombre_cliente;
     }
@@ -55,12 +47,12 @@ private String rut_cliente ;
     public void setTipo_clienteFK(int tipo_clienteFK) {
         this.tipo_clienteFK = tipo_clienteFK;
     }
-
-    @Override
-    public String toString() {
-        return "Ciente{" + "id_cliente=" + id_cliente + ", nombre_cliente=" + nombre_cliente + ", tipo_clienteFK=" + tipo_clienteFK + ", rut_cliente=" + rut_cliente + '}';
-    }
-
+//
+//    @Override
+//    public String toString() {
+//        return "Ciente{" + "id_cliente=" + id_cliente + ", nombre_cliente=" + nombre_cliente + ", tipo_clienteFK=" + tipo_clienteFK + ", rut_cliente=" + rut_cliente + '}';
+//    }
+//
 
 
 

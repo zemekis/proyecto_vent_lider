@@ -12,18 +12,19 @@ import model.*;
 public class TableModelProducto implements TableModel{
     
     private DAO d;
-    private List<Producto> lista;
+    private List<Producto> listaP;
 
-    public TableModelProducto() throws SQLException{
+    public TableModelProducto(List<Producto> lista) throws SQLException{
     
+        listaP = lista;
         d = new DAO();
-        lista = d.getProductos();
+        
     
     }
     
     @Override
     public int getRowCount() {
-        return lista.size();
+        return listaP.size();
     }
 
     @Override
@@ -64,7 +65,7 @@ public class TableModelProducto implements TableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Producto p = lista.get(rowIndex);
+        Producto p = listaP.get(rowIndex);
 
         if (columnIndex == 0) {
             return p.getId_producto();
