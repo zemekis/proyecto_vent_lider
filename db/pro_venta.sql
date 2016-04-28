@@ -75,10 +75,11 @@ primary key(id_registrohistorico));
 
 
 create table compra(
+id_compra int,
 id_productoFK int,
 id_ventaFK int,
 cantidad int,
-primary key (id_productoFK,id_ventaFK),
+primary key (id_compra),
 foreign key (id_productoFK) references producto(id_producto),
 foreign key (id_ventaFK) references venta(id_venta)
 
@@ -96,7 +97,7 @@ foreign key (id_ventaFK) references venta(id_venta)
 
 insert into usuario values(null,'usuario1','user12345');
 
- drop database pro_venta;
+--  drop database pro_venta;
 -- drop table cliente;
 -- drop table marca;
 -- drop table metodoPago;
@@ -107,6 +108,7 @@ insert into usuario values(null,'usuario1','user12345');
 -- drop table tipocliente;
 -- drop table usuario;
 -- drop table venta;
+-- drop table compra;
 show tables;
 select * from usuario;
 select * from tipo;
