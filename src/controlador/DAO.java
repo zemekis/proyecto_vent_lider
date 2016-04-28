@@ -9,6 +9,7 @@ import controlador.Conexion;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Ciente;
 import model.Compra;
 import model.Marca;
 import model.MetodoPago;
@@ -30,6 +31,7 @@ public class DAO {
     private List<Tipo> tipos;
     private List<Usuario> usuarios;
     private List<MetodoPago> metodos;
+    private List<Venta> ventas;
     
     public DAO() throws SQLException {
         c = new Conexion(
@@ -320,7 +322,7 @@ public class DAO {
         sql = "insert into venta values("
                 + " null ,"
                 + "'Rancagua O´Carrol 129',"
-                + "curdate(),"
+                + "now(),"
                 + "'" + v.getMetodoPagoFK()+ "',"
                 + "'" + v.getId_usuarioFK()+ "',"
                 + "'" + v.getRut_clienteFK()+ "')";
@@ -361,6 +363,85 @@ public class DAO {
     
     }
   
-   
+    public MetodoPago getMetodo(int id) throws SQLException{
+        
+        MetodoPago m = null;
+         sql = "select * from metodopago where id_metodoPago = '"+id+"' ";
+         
+         c.rs = c.ejecutarSelect(sql);
+         if (c.rs.next()) {
+            m = new MetodoPago();
+            m.setId_metodoPago(c.rs.getInt(1));
+            m.setNombre_metodoPago(c.rs.getString(2));
+        }
+
+        c.rs.close();
+
+        return m;
+        
+    }
+    public Usuario getUsuarioDos(int id) throws SQLException{
+        
+        Usuario u = null;
+         sql = "select * from usuario where id_usuario = '"+id+"' ";
+         
+         c.rs = c.ejecutarSelect(sql);
+         if (c.rs.next()) {
+            u = new Usuario();
+            u.setId_usuario(c.rs.getInt(1));
+            u.setNombre_usuario(c.rs.getString(2));
+            u.setPassword_usuario(c.rs.getString(3));
+        }
+
+        c.rs.close();
+
+        return u;
+        
+    }
+    
+    public Ciente getCliente(String rut) throws SQLException{
+        
+        Ciente cl = null;
+         sql = "select * from cliente where rut_cliente = '"+rut+"' ";
+         
+         c.rs = c.ejecutarSelect(sql);
+         if (c.rs.next()) {
+            cl = new Ciente();
+            cl.setRut_cliente(c.rs.getString(1));
+            cl.setNombre_cliente(c.rs.getString(2));
+            cl.setTipo_clienteFK(c.rs.getInt(3));
+        }
+
+        c.rs.close();
+
+        return cl;
+        
+    }
+
+    public List<Venta> getVentas() throws SQLException {
+        ventas = new ArrayList<>();
+
+        sql = "select * from venta";
+
+        c.rs = c.ejecutarSelect(sql);
+
+        Venta v;
+        while (c.rs.next()) {
+            v = new Venta();
+
+            v.setId_venta(c.rs.getInt(1));
+            v.setDireccionLocal_venta(c.rs.getString(2));
+            v.setFecha_venta(c.rs.getString(3));
+            v.setMetodoPagoFK(c.rs.getInt(4));
+            v.setId_usuarioFK(c.rs.getInt(5));
+            v.setRut_clienteFK(c.rs.getString(6));
+
+            ventas.add(v);
+        }
+
+        c.rs.close();
+
+        return ventas;
+    }
     
 }

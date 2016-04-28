@@ -47,12 +47,12 @@ private String rut_cliente ;
     public void setTipo_clienteFK(int tipo_clienteFK) {
         this.tipo_clienteFK = tipo_clienteFK;
     }
-//
-//    @Override
-//    public String toString() {
-//        return "Ciente{" + "id_cliente=" + id_cliente + ", nombre_cliente=" + nombre_cliente + ", tipo_clienteFK=" + tipo_clienteFK + ", rut_cliente=" + rut_cliente + '}';
-//    }
-//
+
+    @Override
+    public String toString() {
+        return nombre_cliente;
+    }
+
 
 
 
