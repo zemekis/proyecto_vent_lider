@@ -16,10 +16,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        
-        LogIn ocultar = new LogIn();
-        ocultar.setVisible(false);
-        
+        this.setBounds(300, 120, 500, 350);
     }
 
     /**

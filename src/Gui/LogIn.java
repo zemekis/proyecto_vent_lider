@@ -22,6 +22,7 @@ public class LogIn extends javax.swing.JFrame {
      */
     public LogIn() {
         initComponents();
+        this.setBounds(400, 150, 500, 350);
     }
 
     /**
@@ -125,6 +126,7 @@ public class LogIn extends javax.swing.JFrame {
             if (us != null) {
                 Menu mostrarMenu = new Menu();
                 mostrarMenu.setVisible(true);
+                this.setVisible(false);
             } else {
 
                 lblMensaje.setText("Credenciales Erroneas");

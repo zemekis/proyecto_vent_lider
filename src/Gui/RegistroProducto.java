@@ -26,7 +26,7 @@ public class RegistroProducto extends javax.swing.JFrame {
      */
     public RegistroProducto() {
         initComponents();
-            
+             this.setBounds(400, 150,700,500);
             cargarComboTipo();
             cargarComboMarca();
             cargarTabla();
