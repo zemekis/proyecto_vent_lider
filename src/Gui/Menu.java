@@ -16,6 +16,10 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        
+        LogIn ocultar = new LogIn();
+        ocultar.setVisible(false);
+        
     }
 
     /**
@@ -45,6 +49,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnRegPro.setText("Registrar Productos");
+        btnRegPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegProActionPerformed(evt);
+            }
+        });
 
         btnRegMarTip.setText("Registrar marca o tipo");
 
@@ -107,6 +116,12 @@ public class Menu extends javax.swing.JFrame {
     private void btnVerProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerProActionPerformed
+
+    private void btnRegProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegProActionPerformed
+     RegistroProducto regP = new RegistroProducto();
+     regP.setVisible(true);
+             
+    }//GEN-LAST:event_btnRegProActionPerformed
 
     /**
      * @param args the command line arguments

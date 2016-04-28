@@ -64,7 +64,7 @@ public class DAO {
     
     
     public void crearUsuario(Usuario u) throws SQLException {
-        sql = "insert into productosDetalles values("
+        sql = "insert into usuario values("
                 + " null ,"
                 + "'" + u.getNombre_usuario()+ "',"
                 + "'" + u.getPassword_usuario()+ "')";
@@ -253,4 +253,24 @@ public class DAO {
         return productos;
         
     }
+    
+    public Usuario getUsuario(String nombre ,String pass) throws SQLException{
+        
+        Usuario u = null;
+         sql = "select * from usuario where nombre_usuario = '"+nombre+"' and password_usuario='"+pass+"' ";
+         c.rs = c.ejecutarSelect(sql);
+         if (c.rs.next()) {
+            u = new Usuario();
+            u.setId_usuario(c.rs.getInt(1));
+            u.setNombre_usuario(c.rs.getString(2));
+            u.setPassword_usuario(c.rs.getString(3));
+        }
+
+        c.rs.close();
+
+        return u;
+    }
+  
+   
+    
 }

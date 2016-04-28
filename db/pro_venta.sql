@@ -96,6 +96,7 @@ foreign key (id_ventaFK) references venta(id_venta)
 */
 
 insert into usuario values(null,'usuario1','user12345');
+insert into usuario values(null,'admin','admin');
 
 --  drop database pro_venta;
 -- drop table cliente;
@@ -116,4 +117,3 @@ select * from marca;
 select * from producto;
 
 select * from producto where nombre_producto like '%pe%';
-
