@@ -340,18 +340,18 @@ public class DAO {
         c.ejecutar(sql);
     }
     
-    public int getID(String nombre) throws SQLException{
+    public int getSumaCantidad(String id) throws SQLException{
         
-        sql = "select id_producto from producto where nombre_producto = '"+nombre+"'";
+        sql = "select sum(cantidad) from compra where id_ventaFK = '"+id+"'";
         
         c.rs = c.ejecutarSelect(sql);
-        int id = 0;
+        int idS = 0;
         if(c.rs.next()) {
         
-             id = c.rs.getInt(1);
+             idS = c.rs.getInt(1);
         
         }
-        return id;
+        return idS;
 
     }
     

@@ -11,6 +11,7 @@ import java.sql.Statement; // Clase para enviar consultas SQL
 import java.sql.ResultSet; // Clase para obtener los datos o resultados de
                            // un select
 import java.sql.SQLException; // Para manejar excepciones de SQL
+import java.util.ArrayList;
 
 public class Conexion {
     private Connection con;

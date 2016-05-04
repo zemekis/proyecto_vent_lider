@@ -53,8 +53,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnRegMarTip" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnVerPro" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnRegPro" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnRegUsuarios" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
                   </Group>
@@ -67,21 +65,14 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="btnVerPro" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnRegPro" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnRegPro" min="-2" pref="64" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnRegMarTip" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnRegUsuarios" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnRegUsuarios" min="-2" pref="68" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="92" max="32767" attributes="0"/>
                   <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
@@ -91,28 +82,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnVerPro">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ver Productos"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerProActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnRegPro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar Productos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegProActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnRegMarTip">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Registrar marca o tipo"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegMarTipActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegUsuarios">

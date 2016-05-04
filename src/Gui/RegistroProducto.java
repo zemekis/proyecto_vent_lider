@@ -5,10 +5,12 @@
  */
 package Gui;
 
+import controlador.Conexion;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import controlador.DAO;
+import controlador.Seleccion;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +34,14 @@ import model.Venta;
 public class RegistroProducto extends javax.swing.JFrame {
 
 
-
+    String user="root";
+    String password="";
+    String bd="pro_venta";
+    String path="";
+    String backup="C:\\wamp\\bin\\mysql\\mysql5.6.12\\bin\\mysqldump --user="+user+" --password="+password+" -v "+bd+" > "+path;
+    private String extension=".sql";
+    Runtime rt = Runtime.getRuntime();
+    Conexion conexion;
     /**
      * Creates new form Producto
      */
@@ -103,6 +112,12 @@ public class RegistroProducto extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         btnRespaldar = new javax.swing.JButton();
+        txtRuta = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jPanel14 = new javax.swing.JPanel();
+        btnRestaurar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        txtRespaldoRuta = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -122,6 +137,7 @@ public class RegistroProducto extends javax.swing.JFrame {
         txtProductoC = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableModelVentaID = new javax.swing.JTable();
+        btnTotal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -511,21 +527,81 @@ public class RegistroProducto extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("...");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(txtRuta)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap())
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(121, 121, 121)
                 .addComponent(btnRespaldar)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(btnRespaldar)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
+        );
+
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder("Restaurar"));
+
+        btnRestaurar.setText("Restaurar");
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("...");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(btnRestaurar)
+                .addContainerGap(125, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtRespaldoRuta)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(txtRespaldoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(btnRestaurar)
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -534,7 +610,9 @@ public class RegistroProducto extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(364, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -542,7 +620,9 @@ public class RegistroProducto extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Respaldo", jPanel9);
@@ -679,6 +759,13 @@ public class RegistroProducto extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tableModelVentaID);
 
+        btnTotal.setText("Ver Total Compra");
+        btnTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTotalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -691,7 +778,9 @@ public class RegistroProducto extends javax.swing.JFrame {
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTotal)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -701,7 +790,9 @@ public class RegistroProducto extends javax.swing.JFrame {
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -734,7 +825,7 @@ public class RegistroProducto extends javax.swing.JFrame {
         try {
             DAO d = new DAO();
 
-            c.setId_productoFK(d.getID(txtProductoC.getText()));
+            c.setId_productoFK(Integer.parseInt(txtProductoC.getText()));
             c.setCantidad(Integer.parseInt(txtCantidad.getText()));
             c.setId_ventaFK(Integer.parseInt(txtVentaFK.getText()));
 
@@ -829,6 +920,10 @@ public class RegistroProducto extends javax.swing.JFrame {
             Logger.getLogger(RegistroProducto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ArrayIndexOutOfBoundsException ex) {
         }
+        
+        
+        
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
@@ -895,21 +990,92 @@ public class RegistroProducto extends javax.swing.JFrame {
 
     private void btnRespaldarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRespaldarActionPerformed
     
-        try {
-            String executeCmd = "C:\\wamp\\bin\\mysql\\mysql5.6.12\\bin\\mysqldump -u " + "root" + " -p" + "" + " --add-drop-database -B " + "pro_venta" + " -r " + "C:\\holi.sql";
-            Process runtimeProcess = Runtime.getRuntime().exec(executeCmd);
-            int processComplete = runtimeProcess.waitFor();
-
-            if (processComplete == 0) {
-                System.out.println("Backup created successfully");
-            } else {
-                System.out.println("Could not create the backup");
+//        try {
+//            String executeCmd = "C:\\wamp\\bin\\mysql\\mysql5.6.12\\bin\\mysqldump -u " + "root" + " -p" + "" + " --add-drop-database -B " + "pro_venta" + " -r " + "C:\\Respaldos\\respa.sql";
+//            Process runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+        //C:\\wamp\\bin\\mysql\\mysql5.6.12\\bin\\mysqldump -u root -p --add-drop-database -B pro_venta -r C:\\resp.sql
+        
+        if(txtRuta.getText().length()>0){
+            try {
+                File file;
+                file=new File(txtRuta.getText());
+                path=file.getAbsolutePath()+extension;
+                System.out.println(""+path);
+                int c=JOptionPane.showConfirmDialog(this, "Desea Crear una Copia de Seguridad en esta ruta \n"+path, "Mensaje de Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if(c==JOptionPane.YES_OPTION){
+                    backup="C:\\wamp\\bin\\mysql\\mysql5.6.12\\bin\\mysqldump --opt -u"+user+" -p"+password+" "+bd+"  -r "+path;
+                    rt.exec(backup);
+                    JOptionPane.showMessageDialog(this, "BackUp Creado Correctamente en "+file.getPath());
+                    this.dispose();
+                }
+                
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        }else
+            JOptionPane.showMessageDialog(this, "Complete Todos Los Campos");
+
 
     }//GEN-LAST:event_btnRespaldarActionPerformed
+
+    private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
+        try {
+            int fila = tableModelVentaID.getSelectedRow();
+            String id = tableModelVentaID.getValueAt(fila, 0).toString();
+            DAO d = new DAO();
+            
+            javax.swing.JOptionPane.showMessageDialog(this, Integer.toString(d.getSumaCantidad(id)), "", JOptionPane.OK_OPTION);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistroProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+    }//GEN-LAST:event_btnTotalActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Seleccion o=new Seleccion();
+        o.ResetFiltros();
+        File file= o.guardar(this);
+        if(file!=null){
+           String cad= file.getAbsolutePath();
+           txtRuta.setText(cad);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Seleccion o = new Seleccion();
+        File file = o.Abrir(this);
+        if (file != null) {
+            String cad = file.getAbsolutePath();
+            txtRespaldoRuta.setText(cad);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
+        
+        if (txtRespaldoRuta.getText().length() > 0) {
+            try {
+                File file;
+                file = new File(txtRutCliente.getText());
+                path = file.getAbsolutePath();
+                int c = JOptionPane.showConfirmDialog(this, "Desea Restaurar esta Base de datos", "mensaje de confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (c == JOptionPane.YES_OPTION) {
+                    
+                    backup = "C:\\wamp\\bin\\mysql\\mysql5.6.12\\bin\\mysql --user=" + user + " --password=" + password + "   " + bd + " < " + path;
+                    Process res = Runtime.getRuntime().exec(backup);
+                    JOptionPane.showMessageDialog(this, "La Base de Datos ha sido Restaurada Correctamente");
+                    this.dispose();
+                }
+
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        }
+        
+    }//GEN-LAST:event_btnRestaurarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -958,6 +1124,8 @@ public class RegistroProducto extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarProducto;
     private javax.swing.JButton btnRegistrarTipo;
     private javax.swing.JButton btnRespaldar;
+    private javax.swing.JButton btnRestaurar;
+    private javax.swing.JButton btnTotal;
     private javax.swing.JComboBox cboCajero;
     private javax.swing.JComboBox cboMarca;
     private javax.swing.JComboBox cboMarcaBusqueda;
@@ -965,6 +1133,8 @@ public class RegistroProducto extends javax.swing.JFrame {
     private javax.swing.JComboBox cboTipo;
     private javax.swing.JComboBox cboTipoBusqueda;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -988,6 +1158,7 @@ public class RegistroProducto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1010,7 +1181,9 @@ public class RegistroProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecioBusqueda;
     private javax.swing.JTextField txtPrecioProducto;
     private javax.swing.JTextField txtProductoC;
+    private javax.swing.JTextField txtRespaldoRuta;
     private javax.swing.JTextField txtRutCliente;
+    private javax.swing.JTextField txtRuta;
     private javax.swing.JTextField txtStockBusqueda;
     private javax.swing.JTextField txtStockProducto;
     private javax.swing.JTextField txtVentaFK;

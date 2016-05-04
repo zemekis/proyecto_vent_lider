@@ -97,6 +97,8 @@ foreign key (id_productoFK) references producto(id_producto),
 foreign key (id_ventaFK) references venta(id_venta)
 );
 
+insert into compra values(null, 1, 1, 3);
+
 /*
 create table registroventa(
 id_registroVenta int auto_increment,
@@ -128,3 +130,9 @@ select * from marca;
 select * from producto;
 select * from venta;
 select * from compra;
+
+select sum(cantidad) from compra where id_ventaFK = 1;
+
+
+ 
+

@@ -29,9 +29,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnVerPro = new javax.swing.JButton();
         btnRegPro = new javax.swing.JButton();
-        btnRegMarTip = new javax.swing.JButton();
         btnRegUsuarios = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -40,24 +38,10 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sistema Venta"));
 
-        btnVerPro.setText("Ver Productos");
-        btnVerPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerProActionPerformed(evt);
-            }
-        });
-
         btnRegPro.setText("Registrar Productos");
         btnRegPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegProActionPerformed(evt);
-            }
-        });
-
-        btnRegMarTip.setText("Registrar marca o tipo");
-        btnRegMarTip.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegMarTipActionPerformed(evt);
             }
         });
 
@@ -88,8 +72,6 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRegMarTip, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVerPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
@@ -99,19 +81,13 @@ public class Menu extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(btnVerPro)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRegPro)
+                        .addComponent(btnRegPro, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRegMarTip)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRegUsuarios))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel1)))
+                        .addComponent(btnRegUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addGap(26, 26, 26))
@@ -131,10 +107,6 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerProActionPerformed
-
     private void btnRegProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegProActionPerformed
      RegistroProducto regP = new RegistroProducto();
      regP.setVisible(true);
@@ -147,14 +119,10 @@ public class Menu extends javax.swing.JFrame {
        volver.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnRegMarTipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegMarTipActionPerformed
-   
-    }//GEN-LAST:event_btnRegMarTipActionPerformed
-
     private void btnRegUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegUsuariosActionPerformed
-       this.setVisible(false);
-       RegistroUsuario regu = new RegistroUsuario();
-       regu.setVisible(true);
+//       this.setVisible(false);
+////       RegistroUsuario regu = new RegistroUsuario();
+//       regu.setVisible(true);
                
     }//GEN-LAST:event_btnRegUsuariosActionPerformed
 
@@ -194,11 +162,9 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegMarTip;
     private javax.swing.JButton btnRegPro;
     private javax.swing.JButton btnRegUsuarios;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnVerPro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
